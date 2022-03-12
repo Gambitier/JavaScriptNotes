@@ -12,7 +12,7 @@ export class DatabaseConnector {
             return true;
         } catch (error) {
             Logger.instance().log('Create database error: ' + error.message);
-            return false;
+            throw error;
         }
     };
 

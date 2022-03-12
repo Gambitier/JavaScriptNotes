@@ -57,7 +57,7 @@ export class DatabaseConnector_Sequelize implements IDatabaseConnector {
             return true;
         } catch (err) {
             Logger.instance().log(err.message);
-            return false;
+            throw err;
         }
     };
 
