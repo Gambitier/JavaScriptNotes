@@ -1,4 +1,13 @@
-import { inject, injectable } from 'tsyringe';
+import { injectable } from 'tsyringe';
 
 @injectable()
-export class UserService {}
+export class UserService {
+    create = async () => {
+        const servicceResponse = {
+            name: 'akash jadhav',
+            designation: 'software dev',
+        };
+
+        return servicceResponse;
+    };
+}

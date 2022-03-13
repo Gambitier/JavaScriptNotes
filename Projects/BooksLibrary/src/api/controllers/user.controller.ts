@@ -34,10 +34,7 @@ export class UserController {
         try {
             // request.context = 'User.create';
 
-            const apiResponse = {
-                name: 'akash jadhav',
-                designation: 'software dev',
-            };
+            const apiResponse = await this._service.create();
 
             ResponseHandler.success(
                 request,
