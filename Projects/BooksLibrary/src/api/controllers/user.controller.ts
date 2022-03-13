@@ -38,7 +38,7 @@ export class UserController {
 
             const domainData: UserDomainModel = await UserValidator.create(request, response);
 
-            const apiResponse = await this._service.create();
+            const apiResponse = await this._service.create(domainData);
 
             ResponseHandler.success(
                 request,
