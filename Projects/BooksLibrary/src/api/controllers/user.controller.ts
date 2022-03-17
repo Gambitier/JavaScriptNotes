@@ -2,6 +2,7 @@ import { UserValidator } from 'api/validators/user.validator';
 import { Authorizer } from 'auth/authorizer';
 import { ResponseHandler } from 'common/response.handler';
 import { UserDomainModel } from 'domain.types/user/user.domain.model';
+import { UserDetailsDto } from 'domain.types/user/user.dto';
 import express from 'express';
 import { UserService } from 'services/user.service';
 import { Loader } from 'startup/loader';
@@ -38,7 +39,7 @@ export class UserController {
 
             const domainData: UserDomainModel = await UserValidator.create(request, response);
 
-            const apiResponse = await this._service.create(domainData);
+            const userdetails: UserDetailsDto = await this._service.create(domainData);
 
             ResponseHandler.success(
                 request,
@@ -46,8 +47,7 @@ export class UserController {
                 'User created!',
                 200,
                 {
-                    entity: apiResponse,
-                    domainData: domainData,
+                    entity: userdetails,
                 },
                 false
             );

@@ -1,14 +1,15 @@
 import { UserDomainModel } from 'domain.types/user/user.domain.model';
-import { injectable } from 'tsyringe';
+import { UserDetailsDto } from 'domain.types/user/user.dto';
+import { inject, injectable } from 'tsyringe';
+import { IUserRepo } from '../database/repository.interfaces/user.repo.intrerface';
 
 @injectable()
 export class UserService {
-    create = async (userDetails: UserDomainModel) => {
-        const servicceResponse = {
-            name: 'akash jadhav',
-            designation: 'software dev',
-        };
+    constructor(@inject('IUserRepo') private _userRepo: IUserRepo) {}
 
-        return servicceResponse;
+    create = async (userDetails: UserDomainModel): Promise<UserDetailsDto> => {
+        const userDetailsDto: UserDetailsDto = await this._userRepo.createUser(userDetails);
+
+        return userDetailsDto;
     };
 }
