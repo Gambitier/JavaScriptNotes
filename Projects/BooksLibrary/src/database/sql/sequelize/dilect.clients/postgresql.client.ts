@@ -3,6 +3,16 @@ import { DbConfig } from '../database.config';
 import { Client } from 'pg';
 
 export class PostgresqlClient {
+    static async dropDb() {
+        try {
+            const config = DbConfig.config;
+            const query = `DROP DATABASE IF EXISTS ${config.database}`;
+            await PostgresqlClient.executeQuery(query);
+        } catch (error) {
+            Logger.instance().log(error.message);
+        }
+    }
+
     static async executeQuery(query: string) {
         try {
             const config = DbConfig.config;
