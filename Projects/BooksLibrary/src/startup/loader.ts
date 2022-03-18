@@ -47,6 +47,8 @@ export class Loader {
 
             Loader._seeder = container.resolve(Seeder);
 
+            Loader._authorizer = container.resolve(Authorizer);
+
             return true;
         } catch (error) {
             Logger.instance().log(error.message);

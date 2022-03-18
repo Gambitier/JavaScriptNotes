@@ -1,6 +1,7 @@
 import express from 'express';
 import { Logger } from '../../common/logger';
-import { register } from './user.routes';
+import { register as registerUserRoutes } from './user.routes';
+import { register as registerAuthRoutes } from './auth.routes';
 
 export class Router {
     private _app = null;
@@ -19,7 +20,8 @@ export class Router {
                     });
                 });
 
-                register(this._app);
+                registerUserRoutes(this._app);
+                registerAuthRoutes(this._app);
 
                 resolve(true);
             } catch (error) {
