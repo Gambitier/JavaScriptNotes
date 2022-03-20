@@ -47,6 +47,7 @@ export class Loader {
 
             Loader._seeder = container.resolve(Seeder);
 
+            Loader._authenticator = container.resolve(Authenticator);
             Loader._authorizer = container.resolve(Authorizer);
 
             return true;
