@@ -14,6 +14,12 @@ import { IUserRepo } from '../database/repository.interfaces/user.repo.intrerfac
 export class UserService {
     constructor(@inject('IUserRepo') private _userRepo: IUserRepo, @inject('IRoleRepo') private _roleRepo: IRoleRepo) {}
 
+    getById = async (userId: string): Promise<UserDetailsDto> => {
+        const userDetailsDto: UserDetailsDto = await this._userRepo.getById(userId);
+
+        return userDetailsDto;
+    };
+
     create = async (userDetails: UserDomainModel): Promise<UserDetailsDto> => {
         const userRole: RoleDto = await this._roleRepo.getByName(Roles.User);
         userDetails.RoleId = userRole.id;
